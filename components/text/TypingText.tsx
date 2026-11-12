@@ -3,9 +3,11 @@ import {useEffect, useRef, useState} from "react";
 
 export default function TypingText({ text = '', timeoutMS = 100, className = '' }){
     const [visibleString, setVisibleString] = useState('');
+    const [blink, setBlink] = useState(true);
 
     const currentIndex = useRef(0);
 
+    // Logic that controls the typing animation
     useEffect(() => {
         if (visibleString.length !== text?.length) {
             setVisibleString('');
@@ -37,16 +39,20 @@ export default function TypingText({ text = '', timeoutMS = 100, className = '' 
         };
     }, []);
 
+    // Blink effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setBlink(prev => !prev);
+        }, 500);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="flex flex-row gap-2">
             <p className={className}>
-                {visibleString}
-            </p>
-            { /* TODO: This cursor looks wrong when the text spans more than one line. */ }
-            <p className={`${className} blink`}>
-                |
+                {visibleString}{ blink ? "|" : "\u00A0" }
             </p>
         </div>
-
     );
 }
