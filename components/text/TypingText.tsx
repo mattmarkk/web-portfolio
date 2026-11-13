@@ -39,19 +39,10 @@ export default function TypingText({ text = '', timeoutMS = 100, className = '' 
         };
     }, []);
 
-    // Blink effect
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setBlink(prev => !prev);
-        }, 500);
-
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div className="flex flex-row gap-2">
             <p className={className}>
-                {visibleString}{ blink ? "|" : "\u00A0" }
+                {visibleString}<span className="blink">|</span>
             </p>
         </div>
     );
