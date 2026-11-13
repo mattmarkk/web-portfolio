@@ -20,11 +20,11 @@ export default function Navbar() {
     return (
         <header
             className={`
-                z-50 bg-white/95 backdrop-blur-lg
-                shadow-sm shadow-stone-200/40
+                z-50 bg-foreground/10 backdrop-blur-lg
+                shadow-md shadow-foreground/10
                 ${isMobile
                 ? "fixed inset-x-0 bottom-0 border-t border-stone-200/80"
-                : "sticky top-0 border-b border-stone-200/80"
+                : "sticky top-0"
             }
             `}
             style={isMobile
@@ -73,7 +73,7 @@ export default function Navbar() {
                         href={href}
                         className={`
                             flex items-center justify-center rounded-lg
-                            text-stone-600 transition-colors
+                            text-foreground transition-colors
                             hover:bg-orange-50 hover:text-orange-600
                             focus-visible:outline-2 focus-visible:outline-orange-500
                             ${isMobile
